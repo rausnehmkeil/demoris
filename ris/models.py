@@ -174,7 +174,7 @@ class Meeting(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
         self.id_url = HOSTNAME + OPARL_URL + "meeting/" + str(self.id)
-        self.location_url = HOSTNAME + OPARL_URL + "meeting/" + str(self.location.id)
+        self.location_url = HOSTNAME + OPARL_URL + "location/" + str(self.location.id)
         super().save(*args, **kwargs) 
         #print("id_url : " + str(self.id_url))
 
