@@ -51,7 +51,7 @@ def view_one(request, obj, id):
         model = Paper
         object = model.objects.filter(id=id)
         data = PaperSerializer(object, many=True).data
-    response = json.dumps(data).replace("\\","")
+    response = json.dumps(data)
     return HttpResponse(response, content_type='application/json')
 
 def view_all(request, obj):
@@ -92,5 +92,5 @@ def view_all(request, obj):
         object = model.objects.all()
         data = PaperSerializer(object, many=True).data
     response = json.dumps(data)
-    response = json.dumps(data).replace("\\","")
+    #response = json.dumps(data).replace("\\","")
     return HttpResponse(response, content_type='application/json')
