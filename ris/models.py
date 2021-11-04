@@ -142,12 +142,14 @@ class AgendaItem(models.Model):
     name = models.CharField(max_length=256)
     number = models.IntegerField()
     location = models.ForeignKey(to='Location', on_delete=models.PROTECT, null=True, blank=True)
+    location_url = models.CharField(max_length=256, default = HOSTNAME + OPARL_URL + "location/")
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
         self.id_url = HOSTNAME + OPARL_URL + "agendaitem/" + str(self.id)
+        self.location_url = HOSTNAME + OPARL_URL + "meeting/" + str(self.location.id)
         super().save(*args, **kwargs) 
         #print("id_url : " + str(self.id_url))
 
@@ -162,6 +164,7 @@ class Meeting(models.Model):
     type = "https://schema.oparl.org/" + OPARL_VERSION +"/Meeting"
     organization = models.ForeignKey(to='Organization', on_delete=models.PROTECT)
     location = models.ForeignKey(to='Location', on_delete=models.PROTECT, null=True, blank=True)
+    location_url = models.CharField(max_length=256, default = HOSTNAME + OPARL_URL + "location/")
     name = models.CharField(max_length=256)
     person = models.ManyToManyField(Person)
     agendaItem = models.ManyToManyField(AgendaItem)
@@ -171,6 +174,7 @@ class Meeting(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
         self.id_url = HOSTNAME + OPARL_URL + "meeting/" + str(self.id)
+        self.location_url = HOSTNAME + OPARL_URL + "meeting/" + str(self.location.id)
         super().save(*args, **kwargs) 
         #print("id_url : " + str(self.id_url))
 

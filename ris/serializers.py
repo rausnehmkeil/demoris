@@ -52,8 +52,8 @@ class PersonSerializer(serializers.ModelSerializer):
 
 class AgendaItemSerializer(serializers.ModelSerializer):
     id = serializers.CharField(source='id_url') 
-    location = LocationSerializer(read_only=True, many=False)
-    # meeting = MeetingSerializer(read_only=True, many=True)
+    location = serializers.CharField(source='location_url') 
+    #location = LocationSerializer(read_only=True, many=False)
 
     class Meta:
         fields = ['id', 'type', 'name', 'number', 'location', 'created', 'modified']
