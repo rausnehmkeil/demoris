@@ -80,7 +80,8 @@ class Organization(models.Model):
         #print("id_url : " + str(self.id_url))
 
     def __str__(self):
-        return "{0}".format(self.name)
+        #return "{0}".format(self.name)
+        return f"{self.name}, {self.organizationType}"
 
 class Person(models.Model):
     id  = models.BigAutoField(primary_key=True, editable=False)
@@ -103,7 +104,8 @@ class Person(models.Model):
         print("id_url : " + str(self.id_url))
 
     def __str__(self):
-        return "{0} {1}".format(self.givenName, self.familyName)
+        #return "{0} {1}".format(self.givenName, self.familyName)
+        return f"{self.familyName}, {self.givenName}"
 
 class Membership(models.Model):
     id  = models.BigAutoField(primary_key=True, editable=False)
@@ -125,7 +127,8 @@ class Membership(models.Model):
         print("id_url : " + str(self.id_url) + "   person_url : " + str(self.person_url))
 
     def __str__(self):
-        return "{0} - {1} - {2}".format(self.id, self.person, self.organization)
+        #return "{0} - {1} - {2}".format(self.id, self.person, self.organization)
+        return f"{self.id}, {self.person}, {self.organization}"
 
 
 class AgendaItem(models.Model):
@@ -145,7 +148,8 @@ class AgendaItem(models.Model):
         #print("id_url : " + str(self.id_url))
 
     def __str__(self):
-        return "{0}".format(self.name)
+        #return "{0}".format(self.name)
+        return f"{self.id}, {self.name}, {self.number}, {self.location}"
 
 
 class Meeting(models.Model):
@@ -167,7 +171,8 @@ class Meeting(models.Model):
         #print("id_url : " + str(self.id_url))
 
     def __str__(self):
-        return "{0}".format(self.name)
+        #return "{0}".format(self.name)
+        return f"{self.id}, {self.name}, {self.organization}, {self.start}"
 
 
 class Location(models.Model):
