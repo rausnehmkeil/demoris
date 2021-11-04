@@ -24,6 +24,8 @@ class BodySerializer(serializers.ModelSerializer):
 
 class OrganizationSerializer(serializers.ModelSerializer):
     id = serializers.CharField(source='id_url') 
+    body = serializers.CharField(source='body_url')
+    location = serializers.CharField(source='location_url')
     #locationSerializer
     #membership
 
@@ -61,7 +63,8 @@ class MeetingSerializer(serializers.ModelSerializer):
     id = serializers.CharField(source='id_url') 
     person = PersonSerializer(read_only=True, many=True)
     organization = OrganizationIdSerializer(read_only=True, many=False)
-    location = LocationSerializer(read_only=True, many=False)
+    #location = LocationSerializer(read_only=True, many=False)
+    location = serializers.CharField(source='location_url') 
     agendaItem = AgendaItemSerializer(read_only=True, many=True)
 
     class Meta:

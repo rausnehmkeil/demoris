@@ -64,6 +64,7 @@ class Organization(models.Model):
     type = "https://schema.oparl.org/" + OPARL_VERSION +"/Organization"
     name = models.CharField(max_length=256)
     body = models.ForeignKey(to='Body', on_delete=models.CASCADE)
+    body_url = models.CharField(max_length=256, default = HOSTNAME + OPARL_URL + "body/")
     website = models.URLField(max_length=256, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -71,11 +72,14 @@ class Organization(models.Model):
     #meeting
     organizationType = models.CharField(max_length=256, null=True, blank=True)
     location = models.ForeignKey(to='Location', on_delete=models.PROTECT, null=True, blank=True)
+    location_url = models.CharField(max_length=256, default = HOSTNAME + OPARL_URL + "location/")
     #classification
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
         self.id_url = HOSTNAME + OPARL_URL + "organization/" + str(self.id)
+        self.body_url = HOSTNAME + OPARL_URL + "body/" + str(self.body.id)
+        self.location_url = HOSTNAME + OPARL_URL + "location/" + str(self.location.id)
         super().save(*args, **kwargs) 
         #print("id_url : " + str(self.id_url))
 
