@@ -12,3 +12,6 @@ admin.site.register(Location)
 #admin.site.register(Paper)
 
 
+admin.site.site_header = 'Ratsinformationssystem'
+
+
