@@ -1,3 +1,4 @@
+import json
 from os import name
 from django.db import models
 from django.db.models.deletion import CASCADE
@@ -175,11 +176,11 @@ class Location(models.Model):
     type = "https://schema.oparl.org/" + OPARL_VERSION +"/Location"
     name = models.CharField(max_length=256)
     geojson = models.TextField(null=True, blank=True)
-    #gejson
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
         self.id_url = HOSTNAME + OPARL_URL + "location/" + str(self.id)
+        self.geojson = json.loads(self.geojson)
         super().save(*args, **kwargs) 
         #print("id_url : " + str(self.id_url))
 

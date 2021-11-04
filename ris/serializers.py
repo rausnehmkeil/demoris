@@ -9,6 +9,8 @@ class SystemSerializer(serializers.ModelSerializer):
 
 class LocationSerializer(serializers.ModelSerializer):
     id = serializers.CharField(source='id_url')
+    geojson = serializers.JSONField()
+
     class Meta:
         fields = ['id', 'name', 'type', 'geojson' ]
         model = Location
