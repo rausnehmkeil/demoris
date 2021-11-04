@@ -175,7 +175,7 @@ class Location(models.Model):
     id_url = models.CharField(max_length=256, default = HOSTNAME + OPARL_URL + "location/")
     type = "https://schema.oparl.org/" + OPARL_VERSION +"/Location"
     name = models.CharField(max_length=256)
-    geojson = models.TextField(null=True, blank=True)
+    geojson = models.TextField(null=True, blank=True, default="{}")
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
