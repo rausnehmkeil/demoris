@@ -19,7 +19,7 @@ class BodySerializer(serializers.ModelSerializer):
     id = serializers.CharField(source='id_url')
 
     class Meta:
-        fields = ['id', 'name', 'type', 'system', 'website', 'contactEmail', 'contactName', 'organization', 'person', 'meeting', 'paper']
+        fields = ['id', 'name', 'type', 'system', 'website', 'contactEmail', 'contactName', 'organization', 'person', 'meeting']
         model = Body
 
 class OrganizationSerializer(serializers.ModelSerializer):

@@ -9,6 +9,6 @@ admin.site.register(Membership)
 admin.site.register(Meeting)
 admin.site.register(AgendaItem)
 admin.site.register(Location)
-admin.site.register(Paper)
+#admin.site.register(Paper)
 
 

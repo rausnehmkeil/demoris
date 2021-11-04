@@ -45,7 +45,7 @@ class Body(models.Model):
     organization = HOSTNAME + OPARL_URL + "organization/"
     person = HOSTNAME + OPARL_URL + "person/"
     meeting = HOSTNAME + OPARL_URL + "meeting/"
-    paper = HOSTNAME + OPARL_URL + "paper/"
+    #paper = HOSTNAME + OPARL_URL + "paper/"
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Call the "real" save() method.
