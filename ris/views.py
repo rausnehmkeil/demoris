@@ -1,5 +1,5 @@
 from django.db.models.fields import DateTimeField
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from demoris.settings import HOSTNAME, OPARL_URL
@@ -8,11 +8,9 @@ from .models import AgendaItem, Location, Meeting, Membership, Paper, Person, Sy
 from .serializers import AgendaItemSerializer, BodySerializer, LocationSerializer, MeetingSerializer, MembershipSerializer, OrganizationSerializer, PaperSerializer, PersonSerializer, SystemSerializer
 import json
 
-def all_meetings_json(request, id):
-    meeting = Meeting.objects.filter(id=id)
-    data = MeetingSerializer(meeting, many=True).data
-    response = json.dumps(data)
-    return HttpResponse(response, content_type='application/json')
+def redirect_view(request):
+    response = redirect(HOSTNAME + OPARL_URL + 'system/')
+    return response
 
 def view_one(request, obj, id):
     if obj == 'system':

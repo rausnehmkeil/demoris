@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.admin.options import IS_POPUP_VAR
-from ris.views import view_all, view_one
+from ris.views import redirect_view, view_all, view_one
 from django.urls import path
 from demoris.settings import OPARL_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', redirect_view),
     #path('', oparl_system),
     #path(OPARL_URL + 'system/', oparl_system),
     #path(OPARL_URL + 'body/', oparl_bodies),
